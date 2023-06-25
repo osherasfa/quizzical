@@ -2,7 +2,7 @@
 
 Test Of Knowledge
 
-Live Site: https://osherasfa.github.io/quizzical
+Live Site: [Quizzical](https://quizzical-site.netlify.app/)
 
 ## Demo
 

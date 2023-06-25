@@ -13,10 +13,19 @@ export default function App() {
 
   /* Getting questions from OTDB site and formatting our object */
   function getQuestions(){
-    fetch("https://opentdb.com/api.php?amount=5&difficulty=easy&type=multiple")
+    fetch("https://opentdb.com/api.php?amount=5&difficulty=easy&type=multiple&encode=base64")
     .then((res) => res.json())
     .then((data) => {
-      const items = data.results
+
+      const items = data.results.map(encodedItem => ({
+        category: atob(encodedItem.category),
+        type: atob(encodedItem.type),
+        difficulty: atob(encodedItem.difficulty),
+        question: atob(encodedItem.question),
+        correct_answer: atob(encodedItem.correct_answer),
+        incorrect_answers: encodedItem.incorrect_answers.map(answer => atob(answer))
+    }))
+
       const formatedData = []
       items.map(item => formatedData.push({question : item.question,
                                            correct_answer: item.correct_answer, 
